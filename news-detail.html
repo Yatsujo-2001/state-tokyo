@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>記事タイトル | STATE</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,500;1,300&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a; --white: #f0ede8; --gray: #888;
+    --concrete: #1e1e1e; --accent: #4a7fc1; --line: rgba(240,237,232,0.1);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--black); color: var(--white);
+    font-family: 'Barlow', 'Noto Sans JP', sans-serif;
+    font-weight: 300; line-height: 1.7; -webkit-font-smoothing: antialiased;
+  }
+  nav {
+    padding: 28px 48px; display: flex;
+    justify-content: space-between; align-items: center;
+    border-bottom: 1px solid var(--line);
+  }
+  .logo-svg { height: 24px; width: auto; }
+  .back-link {
+    font-size: 11px; font-weight: 500; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--gray); text-decoration: none; transition: color 0.3s;
+  }
+  .back-link:hover { color: var(--white); }
+
+  .article-hero {
+    aspect-ratio: 21/9; background: var(--concrete);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Bebas Neue', sans-serif; font-size: 20px;
+    letter-spacing: 0.2em; color: rgba(240,237,232,0.06);
+    position: relative; overflow: hidden;
+  }
+  .article-hero::before {
+    content: ''; position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(240,237,232,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(240,237,232,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .article-wrap { max-width: 760px; margin: 0 auto; padding: 80px 48px; }
+
+  .article-meta {
+    display: flex; align-items: center; gap: 20px;
+    margin-bottom: 32px;
+  }
+  .article-tag {
+    font-size: 10px; font-weight: 500; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--accent);
+    border: 1px solid rgba(74,127,193,0.4); padding: 4px 10px;
+  }
+  .article-date { font-size: 13px; color: var(--gray); letter-spacing: 0.05em; }
+
+  .article-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 6vw, 64px); line-height: 1.05;
+    letter-spacing: 0.02em; margin-bottom: 48px;
+  }
+
+  .article-body {
+    font-size: 16px; font-weight: 300;
+    color: rgba(240,237,232,0.8); line-height: 2.1;
+  }
+  .article-body p { margin-bottom: 28px; }
+  .article-body h2 {
+    font-family: 'Bebas Neue', sans-serif; font-size: 32px;
+    letter-spacing: 0.05em; margin: 48px 0 20px;
+    padding-top: 48px; border-top: 1px solid var(--line);
+    color: var(--white);
+  }
+  .article-body blockquote {
+    border-left: 2px solid var(--accent); padding-left: 24px;
+    margin: 40px 0; font-style: italic;
+    color: rgba(240,237,232,0.65); font-size: 18px; line-height: 1.8;
+  }
+
+  .article-img {
+    aspect-ratio: 16/9; background: var(--concrete); margin: 40px 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; letter-spacing: 0.15em; color: rgba(240,237,232,0.08);
+  }
+  .img-caption {
+    font-size: 11px; color: var(--gray); letter-spacing: 0.05em;
+    margin-top: -28px; margin-bottom: 40px; text-align: right;
+  }
+
+    margin-top: 64px; padding: 20px 24px;
+    border: 1px solid rgba(74,127,193,0.3);
+    font-size: 12px; color: var(--accent); letter-spacing: 0.05em; line-height: 1.8;
+  }
+
+  .article-footer {
+    margin-top: 80px; padding-top: 40px; border-top: 1px solid var(--line);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .share-label { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gray); }
+  .back-btn {
+    display: inline-flex; align-items: center; gap: 12px;
+    font-size: 11px; font-weight: 500; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--white); text-decoration: none;
+    border: 1px solid var(--line); padding: 12px 24px; transition: border-color 0.3s;
+  }
+  .back-btn:hover { border-color: var(--white); }
+  .back-btn::before { content: '←'; }
+
+  footer {
+    padding: 40px 48px; border-top: 1px solid var(--line);
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 11px; letter-spacing: 0.1em; color: rgba(240,237,232,0.2);
+    margin-top: 80px;
+  }
+  .footer-logo-sm { height: 20px; }
+
+  @media (max-width: 768px) {
+    nav, .article-wrap, footer { padding-left: 24px; padding-right: 24px; }
+    .article-hero { aspect-ratio: 4/3; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <svg class="logo-svg" viewBox="0 0 220 52" fill="none">
+    <rect x="0" y="0" width="36" height="8" fill="#f0ede8"/>
+    <rect x="0" y="0" width="8" height="24" fill="#f0ede8"/>
+    <rect x="0" y="22" width="36" height="8" fill="#f0ede8"/>
+    <rect x="28" y="22" width="8" height="24" fill="#f0ede8"/>
+    <rect x="0" y="44" width="36" height="8" fill="#f0ede8"/>
+    <rect x="44" y="0" width="36" height="8" fill="#f0ede8"/>
+    <rect x="56" y="8" width="8" height="36" fill="#f0ede8"/>
+    <rect x="88" y="0" width="36" height="8" fill="#f0ede8"/>
+    <rect x="88" y="0" width="8" height="52" fill="#f0ede8"/>
+    <rect x="116" y="0" width="8" height="52" fill="#f0ede8"/>
+    <rect x="88" y="24" width="36" height="8" fill="#f0ede8"/>
+    <rect x="132" y="0" width="36" height="8" fill="#f0ede8"/>
+    <rect x="144" y="8" width="8" height="36" fill="#f0ede8"/>
+    <rect x="176" y="0" width="8" height="52" fill="#f0ede8"/>
+    <rect x="176" y="0" width="44" height="8" fill="#f0ede8"/>
+    <rect x="176" y="22" width="36" height="8" fill="#f0ede8"/>
+    <rect x="176" y="44" width="44" height="8" fill="#f0ede8"/>
+  </svg>
+  <a href="index.html" class="back-link">← News 一覧</a>
+</nav>
+
+<!-- ヒーロー画像(本番はmicroCMSから取得) -->
+<div class="article-hero">PHOTO FROM microCMS</div>
+
+<div class="article-wrap">
+
+  <div class="article-meta">
+    <span class="article-tag">Works</span>
+    <span class="article-date">2026.05.20</span>
+  </div>
+
+  <h1 class="article-title">渋谷区のマンションリノベーション事例を追加しました</h1>
+
+  <div class="article-body">
+
+    <p>2026年5月、渋谷区にあるマンションのフルリノベーション工事が竣工しました。3ヶ月間に渡るプロジェクトの完成をご報告いたします。</p>
+
+    <p>築20年のマンションをスケルトン状態から全面リノベーション。施主のご夫婦が長く住み続けられる、素材感のある暮らしを実現することをテーマに掲げ、設計・施工を進めました。</p>
+
+    <h2>コンクリートと無垢材の対比</h2>
+
+    <p>今回のプロジェクトで最もこだわったのが、仕上げ材の選定です。リビングダイニングの壁と天井は、コンクリート打ちっぱなし調の左官仕上げを採用。あえてザラザラした質感を残すことで、都市の中でも「素材と向き合う場所」をつくりました。</p>
+
+    <div class="article-img">PHOTO FROM microCMS — リビングダイニング</div>
+    <div class="img-caption">リビングダイニング / 左官仕上げ + 無垢材フローリング</div>
+
+    <blockquote>「ここに住んで、素材の経年変化を楽しみたい。」施主のこの一言が、すべての設計の出発点になりました。</blockquote>
+
+    <p>床材にはホワイトオークの無垢材を採用。コンクリートの無機質さと、木の有機的な温かさが対比を生み出します。光の当たり方によって表情が変わる空間は、住む人の感覚を豊かにしてくれます。</p>
+
+    <h2>水回りの全面刷新</h2>
+
+    <p>キッチン・バスルーム・トイレ・洗面室を全面刷新しました。キッチンはアイランド型を採用し、LDK全体を見渡せるレイアウトに変更。カウンタートップには黒みを帯びたセラミックタイルを使用し、全体のトーンを引き締めました。</p>
+
+    <div class="article-img">PHOTO FROM microCMS — キッチン</div>
+    <div class="img-caption">アイランドキッチン / セラミックタイル天板</div>
+
+    <p>バスルームはホテルライクな仕上がりを意識。大判のグレータイルと黒いアイアン製のタオルバーを組み合わせ、毎日の入浴が特別な時間になるような空間に仕上げました。</p>
+
+    <p>詳しい施工事例は「Works」ページからご覧いただけます。同じような空間づくりをご検討の方は、お気軽にお問い合わせください。</p>
+
+    </div>
+  </div>
+
+  <div class="article-footer">
+    <div class="share-label">Share this article</div>
+    <a href="index.html" class="back-btn">News 一覧へ戻る</a>
+  </div>
+
+</div>
+
+<footer>
+  <svg class="footer-logo-sm" viewBox="0 0 220 52" fill="none">
+    <rect x="0" y="0" width="36" height="8" fill="#888"/>
+    <rect x="0" y="0" width="8" height="24" fill="#888"/>
+    <rect x="0" y="22" width="36" height="8" fill="#888"/>
+    <rect x="28" y="22" width="8" height="24" fill="#888"/>
+    <rect x="0" y="44" width="36" height="8" fill="#888"/>
+    <rect x="44" y="0" width="36" height="8" fill="#888"/>
+    <rect x="56" y="8" width="8" height="36" fill="#888"/>
+    <rect x="88" y="0" width="36" height="8" fill="#888"/>
+    <rect x="88" y="0" width="8" height="52" fill="#888"/>
+    <rect x="116" y="0" width="8" height="52" fill="#888"/>
+    <rect x="88" y="24" width="36" height="8" fill="#888"/>
+    <rect x="132" y="0" width="36" height="8" fill="#888"/>
+    <rect x="144" y="8" width="8" height="36" fill="#888"/>
+    <rect x="176" y="0" width="8" height="52" fill="#888"/>
+    <rect x="176" y="0" width="44" height="8" fill="#888"/>
+    <rect x="176" y="22" width="36" height="8" fill="#888"/>
+    <rect x="176" y="44" width="44" height="8" fill="#888"/>
+  </svg>
+  <span>© 2026 STATE Inc. All rights reserved.</span>
+</footer>
+
+</body>
+</html>

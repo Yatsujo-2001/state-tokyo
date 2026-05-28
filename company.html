@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>会社概要 | STATE</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a; --white: #f0ede8; --gray: #888;
+    --concrete: #1e1e1e; --accent: #4a7fc1; --line: rgba(240,237,232,0.1);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--black); color: var(--white);
+    font-family: 'Barlow', 'Noto Sans JP', sans-serif;
+    font-weight: 300; line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  nav {
+    padding: 28px 48px; display: flex;
+    justify-content: space-between; align-items: center;
+    border-bottom: 1px solid var(--line);
+  }
+  .logo-svg { height: 24px; width: auto; }
+  .back-link {
+    font-size: 11px; font-weight: 500; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--gray); text-decoration: none;
+    transition: color 0.3s;
+  }
+  .back-link:hover { color: var(--white); }
+
+  .page-hero {
+    padding: 100px 48px 80px;
+    border-bottom: 1px solid var(--line);
+    position: relative; overflow: hidden;
+  }
+  .page-hero::before {
+    content: 'COMPANY'; position: absolute; bottom: -20px; right: -10px;
+    font-family: 'Bebas Neue', sans-serif; font-size: 180px;
+    color: rgba(240,237,232,0.02); letter-spacing: 0.05em;
+    user-select: none;
+  }
+  .page-label {
+    font-size: 10px; font-weight: 500; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 24px;
+  }
+  .page-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(60px, 10vw, 120px); line-height: 0.9;
+    letter-spacing: 0.02em; margin-bottom: 32px;
+  }
+  .page-sub {
+    font-size: 16px; font-weight: 300;
+    color: rgba(240,237,232,0.6); max-width: 600px; line-height: 2;
+  }
+
+  .company-wrap {
+    max-width: 1000px; margin: 0 auto;
+    padding: 80px 48px;
+  }
+
+  /* 代表メッセージ */
+  .message-section { margin-bottom: 80px; }
+  .section-head {
+    font-size: 10px; font-weight: 500; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 32px; padding-bottom: 16px;
+    border-bottom: 1px solid var(--line);
+  }
+  .message-grid {
+    display: grid; grid-template-columns: 1fr 2fr; gap: 64px; align-items: start;
+  }
+  .message-photo {
+    aspect-ratio: 3/4; background: var(--concrete);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Bebas Neue', sans-serif; font-size: 14px;
+    letter-spacing: 0.2em; color: rgba(240,237,232,0.1);
+    position: relative;
+  }
+  .message-photo-label {
+    position: absolute; bottom: 16px; left: 16px;
+    font-size: 11px; letter-spacing: 0.1em; color: var(--gray);
+  }
+  .message-name {
+    font-family: 'Bebas Neue', sans-serif; font-size: 40px;
+    letter-spacing: 0.05em; margin-bottom: 4px;
+  }
+  .message-role {
+    font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 32px;
+  }
+  .message-text {
+    font-size: 15px; font-weight: 300;
+    color: rgba(240,237,232,0.75); line-height: 2.1; margin-bottom: 20px;
+  }
+
+  /* 会社概要テーブル */
+  .info-section { margin-bottom: 80px; }
+  .info-table { width: 100%; border-collapse: collapse; }
+  .info-table tr { border-bottom: 1px solid var(--line); }
+  .info-table th {
+    width: 220px; padding: 24px 0; text-align: left;
+    font-size: 11px; font-weight: 500; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--accent); vertical-align: top;
+  }
+  .info-table td {
+    padding: 24px 0; font-size: 15px; font-weight: 300;
+    color: rgba(240,237,232,0.85); line-height: 1.8;
+  }
+
+  /* 数字で見るSTATE */
+  .numbers-section { margin-bottom: 80px; }
+  .numbers-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+    background: var(--line);
+  }
+  .number-item { background: var(--concrete); padding: 40px 32px; }
+  .number-value {
+    font-family: 'Bebas Neue', sans-serif; font-size: 64px;
+    line-height: 1; color: var(--white); margin-bottom: 8px;
+  }
+  .number-value span { font-size: 0.4em; color: var(--accent); }
+  .number-label {
+    font-size: 11px; font-weight: 400; letter-spacing: 0.1em;
+    color: var(--gray);
+  }
+
+  footer {
+    padding: 40px 48px; border-top: 1px solid var(--line);
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 11px; letter-spacing: 0.1em; color: rgba(240,237,232,0.2);
+  }
+  .footer-logo-sm { height: 20px; width: auto; }
+
+  @media (max-width: 768px) {
+    nav, .page-hero, .company-wrap, footer { padding-left: 24px; padding-right: 24px; }
+    .message-grid { grid-template-columns: 1fr; gap: 32px; }
+    .numbers-grid { grid-template-columns: 1fr 1fr; }
+    .info-table th { width: 120px; font-size: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <svg class="logo-svg" viewBox="0 0 220 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="0" width="36" height="8" fill="#f0ede8"/>
+    <rect x="0" y="0" width="8" height="24" fill="#f0ede8"/>
+    <rect x="0" y="22" width="36" height="8" fill="#f0ede8"/>
+    <rect x="28" y="22" width="8" height="24" fill="#f0ede8"/>
+    <rect x="0" y="44" width="36" height="8" fill="#f0ede8"/>
+    <rect x="44" y="0" width="36" height="8" fill="#f0ede8"/>
+    <rect x="56" y="8" width="8" height="36" fill="#f0ede8"/>
+    <rect x="88" y="0" width="36" height="8" fill="#f0ede8"/>
+    <rect x="88" y="0" width="8" height="52" fill="#f0ede8"/>
+    <rect x="116" y="0" width="8" height="52" fill="#f0ede8"/>
+    <rect x="88" y="24" width="36" height="8" fill="#f0ede8"/>
+    <rect x="132" y="0" width="36" height="8" fill="#f0ede8"/>
+    <rect x="144" y="8" width="8" height="36" fill="#f0ede8"/>
+    <rect x="176" y="0" width="8" height="52" fill="#f0ede8"/>
+    <rect x="176" y="0" width="44" height="8" fill="#f0ede8"/>
+    <rect x="176" y="22" width="36" height="8" fill="#f0ede8"/>
+    <rect x="176" y="44" width="44" height="8" fill="#f0ede8"/>
+  </svg>
+  <a href="index.html" class="back-link">← Back to Home</a>
+</nav>
+
+<section class="page-hero">
+  <div class="page-label">Company</div>
+  <h1 class="page-title">会社概要</h1>
+  <p class="page-sub">STATEは2016年の創業以来、東京を拠点に内装・リノベーションを手がけてきた施工会社です。</p>
+</section>
+
+<div class="company-wrap">
+
+  <!-- 代表メッセージ -->
+  <div class="message-section">
+    <div class="section-head">Representative Message</div>
+    <div class="message-grid">
+      <div class="message-photo">
+        PORTRAIT
+        <div class="message-photo-label">代表取締役社長</div>
+      </div>
+      <div>
+        <div class="message-name">山田 一郎</div>
+        <div class="message-role">代表取締役社長 / CEO</div>
+        <p class="message-text">
+          STATEを創業して10年が経ちました。最初は小さな店舗の改装からはじまり、いつのまにか300件を超える空間を手がけてきました。
+        </p>
+        <p class="message-text">
+          私たちがずっと大切にしてきたのは、ひとつのことです。「素材に正直であること」。コンクリートはコンクリートらしく、木は木らしく。余分なものを削ぎ落としたところに、本当に気持ちいい空間が生まれると信じています。
+        </p>
+        <p class="message-text">
+          規模は大きくなっても、この軸だけはぶらさない。これからも、クライアントの「実現したい」に全力で応えていきます。
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 数字で見るSTATE -->
+  <div class="numbers-section">
+    <div class="section-head">STATE in Numbers</div>
+    <div class="numbers-grid">
+      <div class="number-item">
+        <div class="number-value">300<span>+</span></div>
+        <div class="number-label">施工実績(件)</div>
+      </div>
+      <div class="number-item">
+        <div class="number-value">10<span>年</span></div>
+        <div class="number-label">創業からの年数</div>
+      </div>
+      <div class="number-item">
+        <div class="number-value">28<span>名</span></div>
+        <div class="number-label">従業員数</div>
+      </div>
+      <div class="number-item">
+        <div class="number-value">4<span>区</span></div>
+        <div class="number-label">主要対応エリア</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 会社概要テーブル -->
+  <div class="info-section">
+    <div class="section-head">Company Information</div>
+    <table class="info-table">
+      <tr>
+        <th>会社名</th>
+        <td>株式会社STATE（ステート）</td>
+      </tr>
+      <tr>
+        <th>代表取締役社長</th>
+        <td>山田 一郎</td>
+      </tr>
+      <tr>
+        <th>設立</th>
+        <td>2016年4月1日</td>
+      </tr>
+      <tr>
+        <th>資本金</th>
+        <td>1,000万円</td>
+      </tr>
+      <tr>
+        <th>従業員数</th>
+        <td>28名（正社員20名 / アルバイト・業務委託8名）</td>
+      </tr>
+      <tr>
+        <th>決算期</th>
+        <td>3月末</td>
+      </tr>
+      <tr>
+        <th>事業内容</th>
+        <td>
+          店舗・住宅・オフィスの内装工事・リノベーション<br>
+          特注家具・什器の設計・製作・販売<br>
+          空間デザイン・設計監理
+        </td>
+      </tr>
+      <tr>
+        <th>所在地</th>
+        <td>
+          〒XXX-XXXX<br>
+          東京都○○区○○1-2-3 ○○ビル3F<br>
+          TEL: 03-XXXX-XXXX　FAX: 03-XXXX-XXXX
+        </td>
+      </tr>
+      <tr>
+        <th>営業時間</th>
+        <td>平日 10:00 - 18:00（土日祝定休）</td>
+      </tr>
+      <tr>
+        <th>取引銀行</th>
+        <td>三菱UFJ銀行 / みずほ銀行</td>
+      </tr>
+      <tr>
+        <th>登録・許可</th>
+        <td>
+          建設業許可　東京都知事許可（般-XX）第XXXXXX号<br>
+          一級建築士事務所　東京都知事登録 第XXXXX号
+        </td>
+      </tr>
+    </table>
+  </div>
+
+</div>
+
+<footer>
+  <svg class="footer-logo-sm" viewBox="0 0 220 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="0" width="36" height="8" fill="#888"/>
+    <rect x="0" y="0" width="8" height="24" fill="#888"/>
+    <rect x="0" y="22" width="36" height="8" fill="#888"/>
+    <rect x="28" y="22" width="8" height="24" fill="#888"/>
+    <rect x="0" y="44" width="36" height="8" fill="#888"/>
+    <rect x="44" y="0" width="36" height="8" fill="#888"/>
+    <rect x="56" y="8" width="8" height="36" fill="#888"/>
+    <rect x="88" y="0" width="36" height="8" fill="#888"/>
+    <rect x="88" y="0" width="8" height="52" fill="#888"/>
+    <rect x="116" y="0" width="8" height="52" fill="#888"/>
+    <rect x="88" y="24" width="36" height="8" fill="#888"/>
+    <rect x="132" y="0" width="36" height="8" fill="#888"/>
+    <rect x="144" y="8" width="8" height="36" fill="#888"/>
+    <rect x="176" y="0" width="8" height="52" fill="#888"/>
+    <rect x="176" y="0" width="44" height="8" fill="#888"/>
+    <rect x="176" y="22" width="36" height="8" fill="#888"/>
+    <rect x="176" y="44" width="44" height="8" fill="#888"/>
+  </svg>
+  <span>© 2026 STATE Inc. All rights reserved.</span>
+</footer>
+
+</body>
+</html>

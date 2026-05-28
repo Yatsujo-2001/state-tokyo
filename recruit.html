@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>採用情報 | STATE</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a; --white: #f0ede8; --gray: #888;
+    --concrete: #1e1e1e; --accent: #4a7fc1; --line: rgba(240,237,232,0.1);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--black); color: var(--white);
+    font-family: 'Barlow', 'Noto Sans JP', sans-serif;
+    font-weight: 300; line-height: 1.7; -webkit-font-smoothing: antialiased;
+  }
+  nav {
+    padding: 28px 48px; display: flex;
+    justify-content: space-between; align-items: center;
+    border-bottom: 1px solid var(--line);
+  }
+  .logo-svg { height: 24px; width: auto; }
+  .back-link {
+    font-size: 11px; font-weight: 500; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--gray); text-decoration: none; transition: color 0.3s;
+  }
+  .back-link:hover { color: var(--white); }
+
+  .page-hero {
+    padding: 100px 48px 80px; border-bottom: 1px solid var(--line);
+    position: relative; overflow: hidden;
+  }
+  .page-hero::before {
+    content: 'JOIN US'; position: absolute; bottom: -20px; right: -10px;
+    font-family: 'Bebas Neue', sans-serif; font-size: 180px;
+    color: rgba(240,237,232,0.02); user-select: none;
+  }
+  .page-label {
+    font-size: 10px; font-weight: 500; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 24px;
+  }
+  .page-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(60px, 10vw, 120px); line-height: 0.9;
+    letter-spacing: 0.02em; margin-bottom: 32px;
+  }
+  .page-sub {
+    font-size: 16px; font-weight: 300;
+    color: rgba(240,237,232,0.6); max-width: 600px; line-height: 2;
+  }
+
+  .recruit-wrap { max-width: 1000px; margin: 0 auto; padding: 80px 48px; }
+
+  .section-head {
+    font-size: 10px; font-weight: 500; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 32px; padding-bottom: 16px; border-bottom: 1px solid var(--line);
+  }
+
+  /* 働く環境 */
+  .culture-section { margin-bottom: 80px; }
+  .culture-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); }
+  .culture-item { background: var(--concrete); padding: 40px 32px; }
+  .culture-num {
+    font-family: 'Bebas Neue', sans-serif; font-size: 48px;
+    color: var(--accent); line-height: 1; margin-bottom: 20px;
+  }
+  .culture-title {
+    font-family: 'Bebas Neue', sans-serif; font-size: 24px;
+    letter-spacing: 0.05em; margin-bottom: 16px;
+  }
+  .culture-text { font-size: 13px; font-weight: 300; color: rgba(240,237,232,0.65); line-height: 1.9; }
+
+  /* 求人一覧 */
+  .jobs-section { margin-bottom: 80px; }
+  .job-item {
+    border: 1px solid var(--line); margin-bottom: 2px;
+    transition: border-color 0.3s;
+  }
+  .job-item:hover { border-color: var(--accent); }
+  .job-header {
+    padding: 32px 36px; cursor: pointer;
+    display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center;
+  }
+  .job-type {
+    font-size: 10px; font-weight: 500; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 8px;
+  }
+  .job-title { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 0.05em; }
+  .job-tags { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+  .job-tag {
+    font-size: 10px; letter-spacing: 0.1em; padding: 4px 10px;
+    border: 1px solid var(--gray-soft); color: var(--gray);
+  }
+  .job-toggle {
+    font-size: 24px; color: var(--accent); transition: transform 0.3s;
+    user-select: none; flex-shrink: 0;
+  }
+  .job-item.open .job-toggle { transform: rotate(45deg); }
+  .job-body { display: none; padding: 0 36px 36px; }
+  .job-item.open .job-body { display: block; }
+  .job-table { width: 100%; border-collapse: collapse; margin-bottom: 32px; }
+  .job-table tr { border-bottom: 1px solid var(--line); }
+  .job-table th {
+    width: 160px; padding: 18px 0; text-align: left;
+    font-size: 11px; font-weight: 500; letter-spacing: 0.1em;
+    color: var(--accent); vertical-align: top;
+  }
+  .job-table td {
+    padding: 18px 0; font-size: 14px; font-weight: 300;
+    color: rgba(240,237,232,0.8); line-height: 1.8;
+  }
+  .apply-btn {
+    display: inline-flex; align-items: center; gap: 16px;
+    padding: 16px 32px; background: var(--accent); color: var(--white);
+    text-decoration: none; font-size: 12px; font-weight: 500;
+    letter-spacing: 0.2em; text-transform: uppercase; transition: opacity 0.3s;
+  }
+  .apply-btn:hover { opacity: 0.8; }
+  .apply-btn::after { content: '→'; }
+
+  /* 選考フロー */
+  .flow-section { margin-bottom: 80px; }
+  .flow-steps {
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 0;
+    position: relative;
+  }
+  .flow-steps::before {
+    content: ''; position: absolute; top: 24px; left: 10%; right: 10%;
+    height: 1px; background: var(--line);
+  }
+  .flow-step { text-align: center; padding: 0 16px; }
+  .flow-num {
+    width: 48px; height: 48px; border: 1px solid var(--accent);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-family: 'Bebas Neue', sans-serif; font-size: 20px; color: var(--accent);
+    margin: 0 auto 16px; background: var(--black);
+  }
+  .flow-label { font-size: 13px; font-weight: 400; line-height: 1.5; }
+  .flow-sub { font-size: 11px; color: var(--gray); margin-top: 6px; }
+
+  footer {
+    padding: 40px 48px; border-top: 1px solid var(--line);
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 11px; letter-spacing: 0.1em; color: rgba(240,237,232,0.2);
+  }
+  .footer-logo-sm { height: 20px; width: auto; }
+
+  @media (max-width: 768px) {
+    nav, .page-hero, .recruit-wrap, footer { padding-left: 24px; padding-right: 24px; }
+    .culture-grid { grid-template-columns: 1fr; }
+    .flow-steps { grid-template-columns: 1fr; gap: 24px; }
+    .flow-steps::before { display: none; }
+    .job-table th { width: 100px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <svg class="logo-svg" viewBox="0 0 220 52" fill="none">
+    <rect x="0" y="0" width="36" height="8" fill="#f0ede8"/>
+    <rect x="0" y="0" width="8" height="24" fill="#f0ede8"/>
+    <rect x="0" y="22" width="36" height="8" fill="#f0ede8"/>
+    <rect x="28" y="22" width="8" height="24" fill="#f0ede8"/>
+    <rect x="0" y="44" width="36" height="8" fill="#f0ede8"/>
+    <rect x="44" y="0" width="36" height="8" fill="#f0ede8"/>
+    <rect x="56" y="8" width="8" height="36" fill="#f0ede8"/>
+    <rect x="88" y="0" width="36" height="8" fill="#f0ede8"/>
+    <rect x="88" y="0" width="8" height="52" fill="#f0ede8"/>
+    <rect x="116" y="0" width="8" height="52" fill="#f0ede8"/>
+    <rect x="88" y="24" width="36" height="8" fill="#f0ede8"/>
+    <rect x="132" y="0" width="36" height="8" fill="#f0ede8"/>
+    <rect x="144" y="8" width="8" height="36" fill="#f0ede8"/>
+    <rect x="176" y="0" width="8" height="52" fill="#f0ede8"/>
+    <rect x="176" y="0" width="44" height="8" fill="#f0ede8"/>
+    <rect x="176" y="22" width="36" height="8" fill="#f0ede8"/>
+    <rect x="176" y="44" width="44" height="8" fill="#f0ede8"/>
+  </svg>
+  <a href="index.html" class="back-link">← Back to Home</a>
+</nav>
+
+<section class="page-hero">
+  <div class="page-label">Recruit</div>
+  <h1 class="page-title">採用情報</h1>
+  <p class="page-sub">「空間をつくる」仕事に、本気で向き合える人を探しています。経験よりも、素直さと熱量を大切にしています。</p>
+</section>
+
+<div class="recruit-wrap">
+
+  <!-- 働く環境 -->
+  <div class="culture-section">
+    <div class="section-head">Why STATE</div>
+    <div class="culture-grid">
+      <div class="culture-item">
+        <div class="culture-num">01</div>
+        <div class="culture-title">設計から施工まで<br>一貫して関われる</div>
+        <p class="culture-text">企画・設計・施工管理・完成まで、すべての工程に携わることができます。「つくった」という実感を、一番ダイレクトに感じられる仕事です。</p>
+      </div>
+      <div class="culture-item">
+        <div class="culture-num">02</div>
+        <div class="culture-title">風通しの良い<br>フラットな組織</div>
+        <p class="culture-text">年次や役職に関係なく、アイデアを出せる環境があります。「こうしたい」という意見を、臆せず言える文化を大切にしています。</p>
+      </div>
+      <div class="culture-item">
+        <div class="culture-num">03</div>
+        <div class="culture-title">多様な案件で<br>スキルが伸びる</div>
+        <p class="culture-text">カフェ・マンション・オフィス・戸建て。案件の種類が多いぶん、幅広いスキルが身につきます。飽きることのない仕事環境です。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 求人一覧 -->
+  <div class="jobs-section">
+    <div class="section-head">Open Positions</div>
+
+    <div class="job-item" id="job1">
+      <div class="job-header" onclick="toggleJob('job1')">
+        <div>
+          <div class="job-type">Full-time</div>
+          <div class="job-title">施工管理 / プロジェクトマネージャー</div>
+          <div class="job-tags">
+            <span class="job-tag">経験者優遇</span>
+            <span class="job-tag">正社員</span>
+            <span class="job-tag">東京</span>
+          </div>
+        </div>
+        <div class="job-toggle">+</div>
+      </div>
+      <div class="job-body">
+        <table class="job-table">
+          <tr><th>職種</th><td>施工管理 / プロジェクトマネージャー</td></tr>
+          <tr><th>雇用形態</th><td>正社員</td></tr>
+          <tr><th>給与</th><td>月給 280,000円〜450,000円（経験・能力による）<br>試用期間3ヶ月あり（同条件）</td></tr>
+          <tr><th>勤務地</th><td>東京都内（現場による）</td></tr>
+          <tr><th>勤務時間</th><td>8:00〜17:00（実働8時間）/ 現場による</td></tr>
+          <tr><th>休日・休暇</th><td>週休2日制（土日祝）/ 年間休日120日以上<br>有給休暇、夏季休暇、年末年始休暇</td></tr>
+          <tr><th>待遇・福利厚生</th><td>社会保険完備 / 交通費支給 / 資格取得支援 / 工具支給</td></tr>
+          <tr><th>求めるスキル</th><td>
+            ・内装工事の施工管理経験（2年以上）<br>
+            ・施工管理技士の資格（あれば尚可）<br>
+            ・コミュニケーション能力と現場調整力
+          </td></tr>
+          <tr><th>仕事内容</th><td>
+            店舗・住宅・オフィスの内装工事における施工管理全般。<br>
+            工程管理、品質管理、安全管理、協力会社との調整、<br>
+            クライアントとの打ち合わせ・進捗報告。
+          </td></tr>
+        </table>
+        <a href="#" class="apply-btn" onclick="alert('実際の案件では応募フォームへのリンクが入ります。')">この職種に応募する</a>
+      </div>
+    </div>
+
+    <div class="job-item" id="job2">
+      <div class="job-header" onclick="toggleJob('job2')">
+        <div>
+          <div class="job-type">Full-time</div>
+          <div class="job-title">内装大工 / 職人</div>
+          <div class="job-tags">
+            <span class="job-tag">経験者優遇</span>
+            <span class="job-tag">正社員</span>
+            <span class="job-tag">東京</span>
+          </div>
+        </div>
+        <div class="job-toggle">+</div>
+      </div>
+      <div class="job-body">
+        <table class="job-table">
+          <tr><th>職種</th><td>内装大工 / 職人</td></tr>
+          <tr><th>雇用形態</th><td>正社員</td></tr>
+          <tr><th>給与</th><td>月給 250,000円〜400,000円（経験・能力による）</td></tr>
+          <tr><th>勤務地</th><td>東京都内（現場による）</td></tr>
+          <tr><th>勤務時間</th><td>8:00〜17:00（実働8時間）</td></tr>
+          <tr><th>休日・休暇</th><td>週休2日制 / 年間休日120日以上</td></tr>
+          <tr><th>待遇・福利厚生</th><td>社会保険完備 / 交通費支給 / 工具支給 / 作業着支給</td></tr>
+          <tr><th>求めるスキル</th><td>
+            ・内装工事の実務経験（1年以上）<br>
+            ・木工・ボード工事の基礎知識<br>
+            ・未経験でも熱意があれば応相談
+          </td></tr>
+          <tr><th>仕事内容</th><td>
+            店舗・住宅・オフィスにおける内装工事全般。<br>
+            軽鉄・ボード・クロス・フローリングなどの施工。<br>
+            自社工房での家具・什器製作も含む。
+          </td></tr>
+        </table>
+        <a href="#" class="apply-btn" onclick="alert('実際の案件では応募フォームへのリンクが入ります。')">この職種に応募する</a>
+      </div>
+    </div>
+
+    <div class="job-item" id="job3">
+      <div class="job-header" onclick="toggleJob('job3')">
+        <div>
+          <div class="job-type">Full-time</div>
+          <div class="job-title">空間デザイナー / インテリアデザイナー</div>
+          <div class="job-tags">
+            <span class="job-tag">経験者優遇</span>
+            <span class="job-tag">正社員</span>
+            <span class="job-tag">東京</span>
+          </div>
+        </div>
+        <div class="job-toggle">+</div>
+      </div>
+      <div class="job-body">
+        <table class="job-table">
+          <tr><th>職種</th><td>空間デザイナー / インテリアデザイナー</td></tr>
+          <tr><th>雇用形態</th><td>正社員</td></tr>
+          <tr><th>給与</th><td>月給 270,000円〜420,000円（経験・能力による）</td></tr>
+          <tr><th>勤務地</th><td>東京都内（本社・現場）</td></tr>
+          <tr><th>勤務時間</th><td>10:00〜19:00（実働8時間）</td></tr>
+          <tr><th>休日・休暇</th><td>週休2日制（土日祝）/ 年間休日120日以上</td></tr>
+          <tr><th>待遇・福利厚生</th><td>社会保険完備 / 交通費支給 / ソフトウェアライセンス支給</td></tr>
+          <tr><th>求めるスキル</th><td>
+            ・内装デザインの実務経験（2年以上）<br>
+            ・AutoCAD / Vectorworks / 3ds Max 等のいずれか<br>
+            ・クライアントとの折衝経験があれば尚可
+          </td></tr>
+          <tr><th>仕事内容</th><td>
+            クライアントへのヒアリングから始まる空間デザインの提案・設計。<br>
+            平面図・立面図・パース作成から、施工図の監修まで。<br>
+            施工管理チームと連携しながら、完成まで一貫して携わる。
+          </td></tr>
+        </table>
+        <a href="#" class="apply-btn" onclick="alert('実際の案件では応募フォームへのリンクが入ります。')">この職種に応募する</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 選考フロー -->
+  <div class="flow-section">
+    <div class="section-head">Selection Process</div>
+    <div class="flow-steps">
+      <div class="flow-step">
+        <div class="flow-num">01</div>
+        <div class="flow-label">書類選考</div>
+        <div class="flow-sub">応募後1週間以内に連絡</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">02</div>
+        <div class="flow-label">一次面接</div>
+        <div class="flow-sub">オンライン可</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">03</div>
+        <div class="flow-label">二次面接</div>
+        <div class="flow-sub">代表 / 現場見学</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">04</div>
+        <div class="flow-label">内定</div>
+        <div class="flow-sub">条件確認・調整</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">05</div>
+        <div class="flow-label">入社</div>
+        <div class="flow-sub">入社日は相談可</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <svg class="footer-logo-sm" viewBox="0 0 220 52" fill="none">
+    <rect x="0" y="0" width="36" height="8" fill="#888"/>
+    <rect x="0" y="0" width="8" height="24" fill="#888"/>
+    <rect x="0" y="22" width="36" height="8" fill="#888"/>
+    <rect x="28" y="22" width="8" height="24" fill="#888"/>
+    <rect x="0" y="44" width="36" height="8" fill="#888"/>
+    <rect x="44" y="0" width="36" height="8" fill="#888"/>
+    <rect x="56" y="8" width="8" height="36" fill="#888"/>
+    <rect x="88" y="0" width="36" height="8" fill="#888"/>
+    <rect x="88" y="0" width="8" height="52" fill="#888"/>
+    <rect x="116" y="0" width="8" height="52" fill="#888"/>
+    <rect x="88" y="24" width="36" height="8" fill="#888"/>
+    <rect x="132" y="0" width="36" height="8" fill="#888"/>
+    <rect x="144" y="8" width="8" height="36" fill="#888"/>
+    <rect x="176" y="0" width="8" height="52" fill="#888"/>
+    <rect x="176" y="0" width="44" height="8" fill="#888"/>
+    <rect x="176" y="22" width="36" height="8" fill="#888"/>
+    <rect x="176" y="44" width="44" height="8" fill="#888"/>
+  </svg>
+  <span>© 2026 STATE Inc. All rights reserved.</span>
+</footer>
+
+<script>
+  function toggleJob(id) {
+    const item = document.getElementById(id);
+    item.classList.toggle('open');
+  }
+</script>
+</body>
+</html>

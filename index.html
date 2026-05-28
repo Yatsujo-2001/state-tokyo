@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STATE | 東京の内装・リノベーション施工会社</title>
+<meta name="description" content="東京都内を拠点に、店舗・住宅・オフィスの内装・リノベーションを手がける施工会社STATE。創業10年、設計から施工まで一貫対応。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a; --white: #f0ede8; --gray: #888;
+    --gray-soft: #444; --concrete: #1e1e1e;
+    --accent: #4a7fc1; --line: rgba(240,237,232,0.1);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--black); color: var(--white);
+    font-family: 'Barlow','Noto Sans JP',sans-serif;
+    font-weight: 300; line-height: 1.7;
+    -webkit-font-smoothing: antialiased; overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 24px 48px;
+    display: flex; justify-content: space-between; align-items: center;
+    background: rgba(10,10,10,0.85); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+  .logo-svg { height: 26px; width: auto; }
+  .nav-links { display: flex; gap: 40px; list-style: none; }
+  .nav-links a {
+    font-size: 11px; font-weight: 500; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--gray);
+    text-decoration: none; transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--white); }
+  .nav-contact {
+    font-size: 11px; font-weight: 500; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--accent);
+    text-decoration: none; border-bottom: 1px solid var(--accent);
+    padding-bottom: 2px; transition: opacity 0.3s;
+  }
+  .nav-contact:hover { opacity: 0.7; }
+
+  /* HERO */
+  .hero {
+    height: 100vh; display: flex; flex-direction: column;
+    justify-content: flex-end; padding: 0 48px 80px;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(240,237,232,0.03) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(240,237,232,0.03) 1px,transparent 1px);
+    background-size: 80px 80px; z-index: 0;
+  }
+  .hero::after {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 70% 50%,rgba(74,127,193,0.06) 0%,transparent 60%);
+    z-index: 0;
+  }
+  .hero-number {
+    position: absolute; top: 50%; right: 48px; transform: translateY(-50%);
+    font-family: 'Bebas Neue',sans-serif; font-size: clamp(200px,30vw,400px);
+    color: rgba(240,237,232,0.03); line-height: 1; z-index: 0; user-select: none;
+  }
+  .hero-content { position: relative; z-index: 1; max-width: 900px; }
+  .hero-eyebrow {
+    font-size: 11px; font-weight: 500; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 32px;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .hero-eyebrow::before { content: ''; display: block; width: 40px; height: 1px; background: var(--accent); }
+  h1 {
+    font-family: 'Bebas Neue',sans-serif;
+    font-size: clamp(72px,12vw,160px); line-height: 0.9;
+    letter-spacing: 0.02em; margin-bottom: 48px;
+  }
+  h1 .line2 { color: transparent; -webkit-text-stroke: 1px rgba(240,237,232,0.4); display: block; }
+  .hero-sub {
+    max-width: 480px; font-size: 15px; font-weight: 300;
+    color: rgba(240,237,232,0.6); line-height: 1.9; margin-bottom: 56px;
+  }
+  .hero-cta {
+    display: inline-flex; align-items: center; gap: 20px;
+    font-size: 12px; font-weight: 500; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--white);
+    text-decoration: none; transition: gap 0.4s;
+  }
+  .hero-cta:hover { gap: 36px; }
+  .hero-cta .arrow { width: 60px; height: 1px; background: var(--white); position: relative; transition: width 0.4s; }
+  .hero-cta:hover .arrow { width: 80px; }
+  .hero-cta .arrow::after {
+    content: ''; position: absolute; right: 0; top: -3px;
+    width: 6px; height: 6px;
+    border-top: 1px solid var(--white); border-right: 1px solid var(--white);
+    transform: rotate(45deg);
+  }
+  .hero-bottom {
+    position: absolute; bottom: 48px; right: 48px;
+    display: flex; flex-direction: column; align-items: flex-end; gap: 8px; z-index: 1;
+  }
+  .hero-stat { display: flex; align-items: baseline; gap: 8px; }
+  .hero-stat .num { font-family: 'Bebas Neue',sans-serif; font-size: 40px; color: var(--white); line-height: 1; }
+  .hero-stat .unit { font-size: 11px; letter-spacing: 0.1em; color: var(--gray); }
+
+  /* WORKS */
+  .works { padding: 120px 48px; }
+  .section-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 64px; max-width: 1400px; margin-left: auto; margin-right: auto;
+  }
+  .section-label {
+    font-size: 10px; font-weight: 500; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: 'Bebas Neue',sans-serif;
+    font-size: clamp(40px,6vw,80px); line-height: 0.95; letter-spacing: 0.05em;
+  }
+  .section-more {
+    font-size: 11px; font-weight: 500; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--gray); text-decoration: none;
+    border-bottom: 1px solid var(--gray-soft); padding-bottom: 4px;
+    transition: all 0.3s; white-space: nowrap;
+  }
+  .section-more:hover { color: var(--white); border-color: var(--white); }
+  .works-grid {
+    max-width: 1400px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(12,1fr); gap: 2px;
+  }
+  .work-item {
+    position: relative; overflow: hidden;
+    background: var(--concrete); cursor: pointer;
+  }
+  .work-item:nth-child(1) { grid-column: 1/8; grid-row: 1; aspect-ratio: 16/10; }
+  .work-item:nth-child(2) { grid-column: 8/13; grid-row: 1; aspect-ratio: 4/5; }
+  .work-item:nth-child(3) { grid-column: 1/5; grid-row: 2; aspect-ratio: 4/5; }
+  .work-item:nth-child(4) { grid-column: 5/9; grid-row: 2; aspect-ratio: 4/5; }
+  .work-item:nth-child(5) { grid-column: 9/13; grid-row: 2; aspect-ratio: 4/5; }
+  .work-img {
+    width: 100%; height: 100%;
+    transition: transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Bebas Neue',sans-serif; font-size: 14px;
+    letter-spacing: 0.2em; color: rgba(240,237,232,0.06);
+  }
+  .work-item:hover .work-img { transform: scale(1.04); }
+  .work-item:nth-child(1) .work-img { background: linear-gradient(135deg,#1a1a1a,#2d2d2d); font-size: 20px; }
+  .work-item:nth-child(2) .work-img { background: linear-gradient(135deg,#222,#333); }
+  .work-item:nth-child(3) .work-img { background: linear-gradient(135deg,#1c1c1c,#2a2a2a); }
+  .work-item:nth-child(4) .work-img { background: linear-gradient(135deg,#252525,#1a1a1a); }
+  .work-item:nth-child(5) .work-img { background: linear-gradient(135deg,#1e1e1e,#2c2c2c); }
+  .work-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top,rgba(0,0,0,0.9) 0%,transparent 55%);
+    opacity: 0; transition: opacity 0.4s;
+    display: flex; flex-direction: column; justify-content: flex-end; padding: 32px;
+  }
+  .work-item:hover .work-overlay { opacity: 1; }
+  .work-category {
+    font-size: 10px; font-weight: 500; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 8px;
+  }
+  .work-name { font-family: 'Bebas Neue',sans-serif; font-size: 28px; letter-spacing: 0.1em; line-height: 1.1; }
+  .work-meta { font-size: 12px; color: rgba(240,237,232,0.6); margin-top: 8px; }
+  .work-tap-hint {
+    position: absolute; top: 16px; right: 16px;
+    font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: rgba(240,237,232,0.4); opacity: 0; transition: opacity 0.4s;
+  }
+  .work-item:hover .work-tap-hint { opacity: 1; }
+
+  /* MODAL */
+  .modal-overlay {
+    position: fixed; inset: 0; z-index: 1000;
+    background: rgba(0,0,0,0.95);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none; transition: opacity 0.4s;
+  }
+  .modal-overlay.active { opacity: 1; pointer-events: all; }
+  .modal {
+    width: 90vw; max-width: 1100px; max-height: 90vh;
+    background: var(--concrete);
+    display: grid; grid-template-columns: 1fr 1fr;
+    overflow: hidden; position: relative;
+    transform: translateY(24px); transition: transform 0.4s;
+  }
+  .modal-overlay.active .modal { transform: translateY(0); }
+  .modal-close {
+    position: absolute; top: 20px; right: 20px; z-index: 10;
+    width: 44px; height: 44px; background: rgba(0,0,0,0.6);
+    border: 1px solid rgba(240,237,232,0.2);
+    color: var(--white); font-size: 18px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.3s;
+  }
+  .modal-close:hover { background: var(--accent); }
+  .modal-img {
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Bebas Neue',sans-serif; font-size: 14px;
+    letter-spacing: 0.2em; color: rgba(240,237,232,0.06);
+    min-height: 400px;
+  }
+  .modal-info { padding: 56px 48px; overflow-y: auto; }
+  .modal-category {
+    font-size: 10px; font-weight: 500; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 16px;
+  }
+  .modal-title {
+    font-family: 'Bebas Neue',sans-serif; font-size: 44px;
+    line-height: 1; letter-spacing: 0.05em; margin-bottom: 32px;
+  }
+  .modal-specs {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+    background: var(--line); margin-bottom: 32px;
+  }
+  .spec-item { background: var(--concrete); padding: 16px 20px; }
+  .spec-label {
+    font-size: 9px; font-weight: 500; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--gray); margin-bottom: 6px;
+  }
+  .spec-value { font-size: 15px; font-weight: 400; }
+  .modal-desc { font-size: 14px; font-weight: 300; color: rgba(240,237,232,0.7); line-height: 2; }
+
+  /* NEWS */
+  .news { padding: 120px 48px; border-top: 1px solid var(--line); }
+  .news-wrap {
+    max-width: 1400px; margin: 0 auto;
+    display: grid; grid-template-columns: 300px 1fr; gap: 120px; align-items: start;
+  }
+  .news-list { display: flex; flex-direction: column; }
+  .news-item {
+    display: grid; grid-template-columns: 120px 80px 1fr 24px;
+    gap: 24px; padding: 24px 0; border-top: 1px solid var(--line);
+    align-items: center; text-decoration: none; color: var(--white);
+    transition: padding-left 0.3s;
+  }
+  .news-item:last-child { border-bottom: 1px solid var(--line); }
+  .news-item:hover { padding-left: 12px; }
+  .news-date { font-size: 13px; font-weight: 300; color: var(--gray); letter-spacing: 0.05em; }
+  .news-tag {
+    font-size: 9px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--accent); border: 1px solid rgba(74,127,193,0.4);
+    padding: 3px 8px; justify-self: start; white-space: nowrap;
+  }
+  .news-title { font-size: 14px; font-weight: 400; line-height: 1.5; }
+  .news-arrow { color: var(--gray); font-size: 16px; justify-self: end; transition: transform 0.3s,color 0.3s; }
+  .news-item:hover .news-arrow { transform: translateX(4px); color: var(--white); }
+
+  /* ABOUT */
+  .about { padding: 120px 48px; background: var(--concrete); position: relative; overflow: hidden; }
+  .about::before {
+    content: 'STATE'; position: absolute; bottom: -40px; right: -20px;
+    font-family: 'Bebas Neue',sans-serif; font-size: 240px;
+    color: rgba(240,237,232,0.02); user-select: none; pointer-events: none;
+  }
+  .about-wrap {
+    max-width: 1400px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 120px; align-items: center;
+  }
+  .about-visual {
+    position: relative; aspect-ratio: 4/5;
+    background: linear-gradient(160deg,#1a1a1a,#2a2a2a); overflow: hidden;
+  }
+  .about-visual::before {
+    content: ''; position: absolute; inset: 0;
+    background:
+      linear-gradient(rgba(240,237,232,0.04) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(240,237,232,0.04) 1px,transparent 1px);
+    background-size: 40px 40px;
+  }
+  .about-visual-text {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Bebas Neue',sans-serif; font-size: 80px;
+    color: rgba(240,237,232,0.05); letter-spacing: 0.1em;
+  }
+  .about-visual-badge {
+    position: absolute; bottom: 32px; left: 32px;
+    background: var(--accent); color: var(--white);
+    padding: 12px 20px; font-size: 11px; font-weight: 600;
+    letter-spacing: 0.15em; text-transform: uppercase;
+  }
+  .about-title {
+    font-family: 'Bebas Neue',sans-serif;
+    font-size: clamp(48px,6vw,80px); line-height: 0.95;
+    letter-spacing: 0.05em; margin-bottom: 40px; margin-top: 20px;
+  }
+  .about-text { font-size: 15px; font-weight: 300; color: rgba(240,237,232,0.7); line-height: 2; margin-bottom: 24px; }
+  .about-quote {
+    margin-top: 48px; padding-left: 24px; border-left: 1px solid var(--accent);
+    font-style: italic; font-size: 18px; font-weight: 300;
+    color: rgba(240,237,232,0.9); line-height: 1.7;
+  }
+
+  /* SERVICES */
+  .services { padding: 120px 48px; }
+  .services-list { max-width: 1400px; margin: 0 auto; }
+  .service-row {
+    display: grid; grid-template-columns: 80px 1fr 2fr 200px;
+    gap: 40px; align-items: center; padding: 40px 0;
+    border-top: 1px solid var(--line); transition: padding-left 0.3s;
+    text-decoration: none; color: var(--white); cursor: pointer;
+  }
+  .service-row:last-child { border-bottom: 1px solid var(--line); }
+  .service-row:hover { padding-left: 16px; }
+  .service-num { font-family: 'Bebas Neue',sans-serif; font-size: 20px; color: var(--accent); letter-spacing: 0.1em; }
+  .service-name { font-family: 'Bebas Neue',sans-serif; font-size: 32px; letter-spacing: 0.05em; line-height: 1.1; }
+  .service-desc { font-size: 13px; font-weight: 300; color: rgba(240,237,232,0.6); line-height: 1.8; }
+  .service-link {
+    display: flex; align-items: center; gap: 12px; justify-self: end;
+    font-size: 10px; font-weight: 500; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--accent); white-space: nowrap; transition: gap 0.3s;
+  }
+  .service-row:hover .service-link { gap: 20px; }
+  .service-link::after { content: '→'; }
+
+  /* CONTACT */
+  .contact { padding: 160px 48px; background: var(--white); color: var(--black); position: relative; overflow: hidden; }
+  .contact::before {
+    content: 'CONTACT'; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+    font-family: 'Bebas Neue',sans-serif; font-size: 200px;
+    color: rgba(10,10,10,0.04); white-space: nowrap; pointer-events: none; user-select: none;
+  }
+  .contact-wrap { max-width: 800px; margin: 0 auto; position: relative; z-index: 1; }
+  .contact .section-label { color: var(--black); opacity: 0.4; }
+  .contact-title {
+    font-family: 'Bebas Neue',sans-serif;
+    font-size: clamp(60px,10vw,120px); line-height: 0.9;
+    letter-spacing: 0.02em; margin-bottom: 48px; color: var(--black);
+  }
+  .contact-lead { font-size: 16px; font-weight: 300; color: rgba(10,10,10,0.6); margin-bottom: 64px; line-height: 2; }
+  .contact-form { display: grid; gap: 32px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .form-group label {
+    display: block; font-size: 10px; font-weight: 500;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: rgba(10,10,10,0.5); margin-bottom: 12px;
+  }
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    width: 100%; padding: 16px 0; background: transparent; border: none;
+    border-bottom: 1px solid rgba(10,10,10,0.2);
+    font-family: 'Barlow',sans-serif; font-size: 15px; font-weight: 300; color: var(--black); transition: border-color 0.3s;
+  }
+  .form-group input:focus,.form-group textarea:focus,.form-group select:focus { outline: none; border-bottom-color: var(--black); }
+  .form-group textarea { min-height: 120px; resize: none; }
+  .submit-btn {
+    display: inline-flex; align-items: center; gap: 24px;
+    padding: 24px 40px; background: var(--black); color: var(--white);
+    border: none; font-family: 'Barlow',sans-serif;
+    font-size: 12px; font-weight: 500; letter-spacing: 0.2em;
+    text-transform: uppercase; cursor: pointer; transition: all 0.3s; justify-self: start;
+  }
+  .submit-btn:hover { background: var(--accent); gap: 36px; }
+  .submit-btn::after { content: '→'; }
+
+  /* FOOTER */
+  footer { padding: 60px 48px 40px; background: var(--black); border-top: 1px solid var(--line); }
+  .footer-wrap {
+    max-width: 1400px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 60px; margin-bottom: 60px;
+  }
+  .footer-logo-svg { height: 28px; width: auto; margin-bottom: 20px; display: block; }
+  .footer-catch { font-size: 12px; font-weight: 300; color: var(--gray); line-height: 1.8; }
+  .footer-col h4 {
+    font-size: 10px; font-weight: 500; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 20px;
+  }
+  .footer-col p,.footer-col a {
+    font-size: 13px; font-weight: 300; color: var(--gray);
+    line-height: 2; text-decoration: none; display: block; transition: color 0.3s;
+  }
+  .footer-col a:hover { color: var(--white); }
+  .footer-bottom {
+    max-width: 1400px; margin: 0 auto; padding-top: 32px;
+    border-top: 1px solid var(--line);
+    display: flex; justify-content: space-between;
+    font-size: 11px; letter-spacing: 0.1em; color: rgba(240,237,232,0.2);
+  }
+
+  ::-webkit-scrollbar { width: 2px; }
+  ::-webkit-scrollbar-track { background: var(--black); }
+  ::-webkit-scrollbar-thumb { background: var(--accent); }
+
+  @media (max-width: 960px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .hero { padding: 0 24px 60px; }
+    .hero-number { display: none; }
+    .works,.news,.about,.services,.contact,footer { padding: 80px 24px; }
+    .works-grid { grid-template-columns: 1fr 1fr; }
+    .work-item { grid-column: auto !important; grid-row: auto !important; aspect-ratio: 4/3 !important; }
+    .work-overlay { opacity: 1; }
+    .news-wrap { grid-template-columns: 1fr; gap: 40px; }
+    .news-item { grid-template-columns: 1fr; gap: 8px; padding: 20px 0; }
+    .news-arrow { display: none; }
+    .about-wrap { grid-template-columns: 1fr; gap: 48px; }
+    .service-row { grid-template-columns: 1fr; gap: 12px; }
+    .form-row { grid-template-columns: 1fr; }
+    .footer-wrap { grid-template-columns: 1fr 1fr; gap: 32px; }
+    .footer-bottom { flex-direction: column; gap: 8px; }
+    .section-header { flex-direction: column; align-items: flex-start; gap: 24px; }
+    .modal { grid-template-columns: 1fr; }
+    .modal-img { min-height: 240px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <svg class="logo-svg" viewBox="0 0 220 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="0" width="36" height="8" fill="#f0ede8"/>
+    <rect x="0" y="0" width="8" height="24" fill="#f0ede8"/>
+    <rect x="0" y="22" width="36" height="8" fill="#f0ede8"/>
+    <rect x="28" y="22" width="8" height="24" fill="#f0ede8"/>
+    <rect x="0" y="44" width="36" height="8" fill="#f0ede8"/>
+    <rect x="44" y="0" width="36" height="8" fill="#f0ede8"/>
+    <rect x="56" y="8" width="8" height="36" fill="#f0ede8"/>
+    <rect x="88" y="0" width="36" height="8" fill="#f0ede8"/>
+    <rect x="88" y="0" width="8" height="52" fill="#f0ede8"/>
+    <rect x="116" y="0" width="8" height="52" fill="#f0ede8"/>
+    <rect x="88" y="24" width="36" height="8" fill="#f0ede8"/>
+    <rect x="132" y="0" width="36" height="8" fill="#f0ede8"/>
+    <rect x="144" y="8" width="8" height="36" fill="#f0ede8"/>
+    <rect x="176" y="0" width="8" height="52" fill="#f0ede8"/>
+    <rect x="176" y="0" width="44" height="8" fill="#f0ede8"/>
+    <rect x="176" y="22" width="36" height="8" fill="#f0ede8"/>
+    <rect x="176" y="44" width="44" height="8" fill="#f0ede8"/>
+  </svg>
+  <ul class="nav-links">
+    <li><a href="#works">Works</a></li>
+    <li><a href="#news">News</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+  </ul>
+  <a href="#contact" class="nav-contact">Contact</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-number">10</div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Interior & Renovation — Tokyo</div>
+    <h1>空間を、<span class="line2">つくる。</span></h1>
+    <p class="hero-sub">店舗・住宅・オフィス。東京を拠点に、内装とリノベーションを手がけてきた10年。設計から施工まで、私たちが一貫して担う。</p>
+    <a href="#works" class="hero-cta"><span>施工事例を見る</span><span class="arrow"></span></a>
+  </div>
+  <div class="hero-bottom">
+    <div class="hero-stat"><span class="num">300</span><span class="unit">Projects</span></div>
+    <div class="hero-stat"><span class="num">10</span><span class="unit">Years</span></div>
+  </div>
+</section>
+
+<!-- WORKS -->
+<section class="works" id="works">
+  <div class="section-header">
+    <div>
+      <div class="section-label">Works</div>
+      <h2 class="section-title">施工<br>事例</h2>
+    </div>
+    <a href="#works" class="section-more">View All Works</a>
+  </div>
+  <div class="works-grid">
+    <div class="work-item" onclick="openModal(0)">
+      <div class="work-img">PHOTO FROM CMS</div>
+      <div class="work-overlay">
+        <div class="work-category">Renovation</div>
+        <div class="work-name">渋谷区<br>マンションリノベ</div>
+        <div class="work-meta">2026 / 東京都渋谷区 / 75㎡</div>
+      </div>
+      <div class="work-tap-hint">Tap to view →</div>
+    </div>
+    <div class="work-item" onclick="openModal(1)">
+      <div class="work-img">PHOTO</div>
+      <div class="work-overlay">
+        <div class="work-category">Store</div>
+        <div class="work-name">中目黒<br>カフェ内装</div>
+        <div class="work-meta">2025 / 東京都目黒区</div>
+      </div>
+      <div class="work-tap-hint">Tap to view →</div>
+    </div>
+    <div class="work-item" onclick="openModal(2)">
+      <div class="work-img">PHOTO</div>
+      <div class="work-overlay">
+        <div class="work-category">Office</div>
+        <div class="work-name">新宿<br>オフィス改装</div>
+        <div class="work-meta">2025 / 東京都新宿区</div>
+      </div>
+      <div class="work-tap-hint">Tap to view →</div>
+    </div>
+    <div class="work-item" onclick="openModal(3)">
+      <div class="work-img">PHOTO</div>
+      <div class="work-overlay">
+        <div class="work-category">Renovation</div>
+        <div class="work-name">世田谷<br>戸建リノベ</div>
+        <div class="work-meta">2025 / 東京都世田谷区</div>
+      </div>
+      <div class="work-tap-hint">Tap to view →</div>
+    </div>
+    <div class="work-item" onclick="openModal(4)">
+      <div class="work-img">PHOTO</div>
+      <div class="work-overlay">
+        <div class="work-category">Store</div>
+        <div class="work-name">恵比寿<br>セレクトショップ</div>
+        <div class="work-meta">2025 / 東京都渋谷区</div>
+      </div>
+      <div class="work-tap-hint">Tap to view →</div>
+    </div>
+  </div>
+</section>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" id="modal">
+    <button class="modal-close" id="modalClose">✕</button>
+    <div class="modal-img" id="modalImg"></div>
+    <div class="modal-info">
+      <div class="modal-category" id="modalCategory"></div>
+      <div class="modal-title" id="modalTitle"></div>
+      <div class="modal-specs" id="modalSpecs"></div>
+      <div class="modal-desc" id="modalDesc"></div>
+    </div>
+  </div>
+</div>
+
+<!-- NEWS -->
+<section class="news" id="news">
+  <div class="news-wrap">
+    <div>
+      <div class="section-label">News</div>
+      <h2 class="section-title">お知らせ</h2>
+    </div>
+    <div class="news-list">
+      <a href="news-detail.html" target="_blank" class="news-item">
+        <div class="news-date">2026.05.20</div>
+        <span class="news-tag">New</span>
+        <div class="news-title">渋谷区のマンションリノベーション事例を追加しました</div>
+        <div class="news-arrow">→</div>
+      </a>
+      <a href="news-detail.html" target="_blank" class="news-item">
+        <div class="news-date">2026.05.10</div>
+        <span class="news-tag">Works</span>
+        <div class="news-title">中目黒のカフェ内装工事が完了しました</div>
+        <div class="news-arrow">→</div>
+      </a>
+      <a href="news-detail.html" target="_blank" class="news-item">
+        <div class="news-date">2026.04.28</div>
+        <span class="news-tag">Info</span>
+        <div class="news-title">GW期間中(5/3〜5/6)は休業いたします</div>
+        <div class="news-arrow">→</div>
+      </a>
+      <a href="news-detail.html" target="_blank" class="news-item">
+        <div class="news-date">2026.04.15</div>
+        <span class="news-tag">Works</span>
+        <div class="news-title">世田谷区の戸建てリノベーション事例を更新しました</div>
+        <div class="news-arrow">→</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-wrap">
+    <div class="about-visual">
+      <div class="about-visual-text">STATE</div>
+      <div class="about-visual-badge">Est. 2016 — Tokyo</div>
+    </div>
+    <div>
+      <div class="section-label">About</div>
+      <h2 class="about-title">職人の<br>美学。</h2>
+      <p class="about-text">STATEは2016年、東京で創業した内装・リノベーション施工会社です。店舗、住宅、オフィス。空間の種類を問わず、設計から施工まで一貫して担ってきました。</p>
+      <p class="about-text">私たちが大切にしているのは、素材の正直さ。コンクリートはコンクリートの表情を、木は木の質感を活かす。余分なものを削ぎ落とした先に、本当に気持ちいい空間がある。</p>
+      <p class="about-text">創業10年で300件超の施工実績。東京都内を中心に、あなたの「実現したい空間」をともに形にします。</p>
+      <div class="about-quote">「素材と職人と、空間が正直に向き合う場所をつくりたい。」</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="section-header">
+    <div>
+      <div class="section-label">Services</div>
+      <h2 class="section-title">事業<br>内容</h2>
+    </div>
+  </div>
+  <div class="services-list">
+    <a href="#works" class="service-row">
+      <div class="service-num">01</div>
+      <div class="service-name">店舗<br>内装</div>
+      <div class="service-desc">カフェ、レストラン、セレクトショップ、美容室など。ブランドの世界観を空間に落とし込む。スケルトンからの全面施工、既存内装の改装まで対応。</div>
+      <div class="service-link">施工事例を見る</div>
+    </a>
+    <a href="#works" class="service-row">
+      <div class="service-num">02</div>
+      <div class="service-name">住宅<br>リノベ</div>
+      <div class="service-desc">マンション・戸建てのフルリノベーション。スケルトン解体から設計・施工まで一貫対応。「自分たちらしい暮らし」を一緒につくる。</div>
+      <div class="service-link">施工事例を見る</div>
+    </a>
+    <a href="#works" class="service-row">
+      <div class="service-num">03</div>
+      <div class="service-name">オフィス<br>改装</div>
+      <div class="service-desc">働く場所が変わると、チームが変わる。ブランドとカルチャーを体現するオフィス空間を、コストと工期を管理しながら実現。</div>
+      <div class="service-link">施工事例を見る</div>
+    </a>
+    <a href="#works" class="service-row">
+      <div class="service-num">04</div>
+      <div class="service-name">特注<br>家具・什器</div>
+      <div class="service-desc">既製品では実現できないディテールを、自社制作で。カウンター、棚、サイン、什器。空間に合わせてゼロから設計・製作する。</div>
+      <div class="service-link">施工事例を見る</div>
+    </a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-wrap">
+    <div class="section-label">Contact</div>
+    <h2 class="contact-title">話を<br>聞かせて<br>ください。</h2>
+    <p class="contact-lead">まずは、あなたが実現したい空間のイメージを聞かせてください。予算・工期・場所、どの段階のご相談でも構いません。</p>
+    <form class="contact-form" onsubmit="event.preventDefault();alert('お問い合わせありがとうございます。(デモ)');">
+      <div class="form-row">
+        <div class="form-group"><label>お名前 *</label><input type="text" required></div>
+        <div class="form-group"><label>会社名</label><input type="text"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>メールアドレス *</label><input type="email" required></div>
+        <div class="form-group"><label>電話番号</label><input type="tel"></div>
+      </div>
+      <div class="form-group">
+        <label>ご相談の種類</label>
+        <select>
+          <option value="">選択してください</option>
+          <option>店舗内装</option>
+          <option>住宅リノベーション</option>
+          <option>オフィス改装</option>
+          <option>特注家具・什器</option>
+          <option>その他</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>ご相談内容 *</label>
+        <textarea required placeholder="場所、規模、ご予算のイメージ、工期の希望など、わかる範囲でお聞かせください。"></textarea>
+      </div>
+      <button type="submit" class="submit-btn">送信する</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-wrap">
+    <div>
+      <svg class="footer-logo-svg" viewBox="0 0 220 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0" y="0" width="36" height="8" fill="#f0ede8"/>
+        <rect x="0" y="0" width="8" height="24" fill="#f0ede8"/>
+        <rect x="0" y="22" width="36" height="8" fill="#f0ede8"/>
+        <rect x="28" y="22" width="8" height="24" fill="#f0ede8"/>
+        <rect x="0" y="44" width="36" height="8" fill="#f0ede8"/>
+        <rect x="44" y="0" width="36" height="8" fill="#f0ede8"/>
+        <rect x="56" y="8" width="8" height="36" fill="#f0ede8"/>
+        <rect x="88" y="0" width="36" height="8" fill="#f0ede8"/>
+        <rect x="88" y="0" width="8" height="52" fill="#f0ede8"/>
+        <rect x="116" y="0" width="8" height="52" fill="#f0ede8"/>
+        <rect x="88" y="24" width="36" height="8" fill="#f0ede8"/>
+        <rect x="132" y="0" width="36" height="8" fill="#f0ede8"/>
+        <rect x="144" y="8" width="8" height="36" fill="#f0ede8"/>
+        <rect x="176" y="0" width="8" height="52" fill="#f0ede8"/>
+        <rect x="176" y="0" width="44" height="8" fill="#f0ede8"/>
+        <rect x="176" y="22" width="36" height="8" fill="#f0ede8"/>
+        <rect x="176" y="44" width="44" height="8" fill="#f0ede8"/>
+      </svg>
+      <p class="footer-catch">東京の内装・リノベーション施工会社。<br>空間を、つくる。</p>
+    </div>
+    <div class="footer-col">
+      <h4>Works</h4>
+      <a href="#works">店舗内装</a>
+      <a href="#works">住宅リノベ</a>
+      <a href="#works">オフィス改装</a>
+      <a href="#works">特注家具</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="company.html" target="_blank">会社概要</a>
+      <a href="recruit.html" target="_blank">採用情報</a>
+      <a href="news-detail.html" target="_blank">お知らせ</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <p>〒XXX-XXXX<br>東京都○○区</p>
+      <a href="mailto:info@state-tokyo.example">info@state-tokyo.jp</a>
+      <p>平日 10:00 - 18:00</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 STATE Inc. All rights reserved.</span>
+    <span>Interior & Renovation — Tokyo</span>
+  </div>
+</footer>
+
+<script>
+  // 施工事例データ(本番はmicroCMSから取得)
+  const works = [
+    {
+      category: 'Renovation',
+      title: '渋谷区 マンション リノベーション',
+      bg: 'linear-gradient(135deg,#1a1a1a,#2d2d2d)',
+      specs: [
+        { label: '場所', value: '東京都渋谷区' },
+        { label: '面積', value: '75㎡' },
+        { label: '工期', value: '3ヶ月' },
+        { label: '施工年', value: '2026年' }
+      ],
+      desc: '築20年のマンションをスケルトンから全面リノベーション。コンクリート打ちっぱなしの壁と無垢材フローリングを組み合わせ、都市の中でも素材感を感じられる空間に仕上げた。水回りは全面刷新し、オープンキッチンを採用。施主のライフスタイルに寄り添った間取り変更も合わせて実施。'
+    },
+    {
+      category: 'Store Interior',
+      title: '中目黒 カフェ 内装',
+      bg: 'linear-gradient(135deg,#222,#333)',
+      specs: [
+        { label: '場所', value: '東京都目黒区' },
+        { label: '面積', value: '42㎡' },
+        { label: '工期', value: '45日' },
+        { label: '施工年', value: '2025年' }
+      ],
+      desc: '目黒川沿いに新規オープンしたカフェの内装一式を担当。古材と鉄を組み合わせたインダストリアルなデザインを基調としつつ、温かみのある照明計画で滞在したくなる空間を実現。カウンター・棚・什器はすべて自社で製作。'
+    },
+    {
+      category: 'Office',
+      title: '新宿 オフィス 改装',
+      bg: 'linear-gradient(135deg,#1c1c1c,#2a2a2a)',
+      specs: [
+        { label: '場所', value: '東京都新宿区' },
+        { label: '面積', value: '120㎡' },
+        { label: '工期', value: '30日' },
+        { label: '施工年', value: '2025年' }
+      ],
+      desc: 'スタートアップ企業のオフィス全面改装。「チームが集まりたくなるオフィス」をテーマに、協働スペースと集中スペースを明確に分けたゾーニングを設計。既存の躯体を活かしながら、企業のブランドカラーを空間に落とし込んだ。'
+    },
+    {
+      category: 'Renovation',
+      title: '世田谷区 戸建 リノベーション',
+      bg: 'linear-gradient(135deg,#252525,#1a1a1a)',
+      specs: [
+        { label: '場所', value: '東京都世田谷区' },
+        { label: '面積', value: '98㎡' },
+        { label: '工期', value: '4ヶ月' },
+        { label: '施工年', value: '2025年' }
+      ],
+      desc: '築35年の戸建てを、家族3人のライフスタイルに合わせてフルリノベーション。耐震補強工事も合わせて実施。1階のリビングダイニングは間仕切りを撤去して開放的な空間に。子供部屋は将来的に分割できる可変設計を採用。'
+    },
+    {
+      category: 'Store Interior',
+      title: '恵比寿 セレクトショップ',
+      bg: 'linear-gradient(135deg,#1e1e1e,#2c2c2c)',
+      specs: [
+        { label: '場所', value: '東京都渋谷区恵比寿' },
+        { label: '面積', value: '55㎡' },
+        { label: '工期', value: '60日' },
+        { label: '施工年', value: '2025年' }
+      ],
+      desc: '海外ブランドを扱うセレクトショップの内装を担当。「商品を主役にする空間」をコンセプトに、什器・棚はすべてオーダーメイドで製作。モノトーンの空間に天然石のカウンターを組み合わせることで、上質感と没入感を両立。'
+    }
+  ];
+
+  function openModal(idx) {
+    const w = works[idx];
+    document.getElementById('modalCategory').textContent = w.category;
+    document.getElementById('modalTitle').textContent = w.title;
+    const img = document.getElementById('modalImg');
+    img.style.background = w.bg;
+    img.textContent = 'PHOTO FROM CMS';
+    let specsHTML = '';
+    w.specs.forEach(s => {
+      specsHTML += '<div class="spec-item"><div class="spec-label">' + s.label + '</div><div class="spec-value">' + s.value + '</div></div>';
+    });
+    document.getElementById('modalSpecs').innerHTML = specsHTML;
+    document.getElementById('modalDesc').textContent = w.desc;
+    document.getElementById('modalOverlay').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  document.getElementById('modalClose').addEventListener('click', closeModal);
+  document.getElementById('modalOverlay').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeModal();
+  });
+
+  function closeModal() {
+    document.getElementById('modalOverlay').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+</script>
+</body>
+</html>
